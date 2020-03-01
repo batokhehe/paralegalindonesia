@@ -23,7 +23,24 @@
             <div class="">
                 <h3>Image Gallery</h3>
                 <div class="row gallery-item">
-                    <div class="col-md-4">
+                    @php
+                        $i = 1;
+                        $col = 4;
+                    @endphp
+                    @foreach ($datas as $data)
+                    @if($i > 3)
+                        @php
+                        $col = 6
+                        @endphp
+                    @endif
+                    <div class="col-md-{{ $col }}">
+                        <a href="{{ url('assets/images/gallery/' . $data->image)  }}" class="img-pop-up">
+                            <div class="single-gallery-image" style="background: url({{ url('assets/images/gallery/' . $data->image)  }});"></div>
+                        </a>
+                    </div>
+                    @php $i++ @endphp
+                    @endforeach
+                    <!-- <div class="col-md-4">
                         <a href="img/gal1.jpeg" class="img-pop-up">
                             <div class="single-gallery-image" style="background: url(img/gal1.jpeg);"></div>
                         </a>
